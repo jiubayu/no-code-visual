@@ -1,0 +1,64 @@
+{
+    "name": "low-code-visual",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "dev:builder": "pnpm --filter builder run dev",
+        "lint:vue": "eslint --fix",
+        "lint:style": "stylelint \"{packages,apps}/**/*.{vue,css,scss}\"",
+        "spellcheck": "cspell lint --color --cache --show-suggestions \"(packages|apps)/**/*.@(vue|css|scss)\"",
+        "commit": "git-cz",
+        "prepare": "husky"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-git"
+        }
+    },
+    "lint-staged": {
+        "*.{md,json}": [
+            "prettier --cache --write --no-error-on-unmatched-pattern"
+        ],
+        "*.{css,less}": [
+            "stylelint --fix",
+            "prettier --cache --write"
+        ],
+        "*.{js,jsx}": [
+            "eslint --fix",
+            "prettier --cache --write"
+        ],
+        "*.{ts,tsx}": [
+            "eslint --fix",
+            "prettier --cache --parser=typescript --write"
+        ]
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "9.13.0",
+        "@eslint/js": "9.13.0",
+        "eslint-plugin-vue": "9.30.0",
+        "vue-eslint-parser": "9.4.3",
+        "globals": "15.11.0",
+        "@typescript-eslint/parser": "8.12.1",
+        "eslint-plugin-simple-import-sort": "12.1.1",
+        "stylelint": "16.10.0",
+        "stylelint-config-standard": "36.0.1",
+        "stylelint-config-standard-vue": "1.0.0",
+        "stylelint-config-standard-scss": "13.1.0",
+        "cspell": "8.15.4",
+        "cz-git": "1.10.1",
+        "@commitlint/cli": "19.5.0",
+        "@commitlint/config-conventional": "19.5.0",
+        "commitizen": "4.3.1",
+        "husky": "9.1.6",
+        "lint-staged": "15.2.10",
+        "prettier": "3.3.3"
+    }
+}

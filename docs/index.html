@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>无代码可视化平台</title>
+    <style>
+      #root {
+        width: 800px;
+        height: 1000px;
+        background-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const jsonData = {
+        type: 'page',
+        layout: 'grid',
+        components: [
+          {
+            type: 'Button',
+            props: {
+              text: 'Click me',
+            },
+            position: {
+              row: 1,
+              column: 1,
+            },
+          },
+          {
+            type: 'Input',
+            props: {
+              placeholder: 'Enter text',
+            },
+            position: {
+              row: 2,
+              column: 1,
+            },
+          },
+        ],
+      };
+
+      function render(dsl, container) {
+        // 清空根节点
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+        // 根据dsl生成dom树
+        dsl.components.forEach((component) => {
+          const dom = document.createElement(component.type.toLowerCase());
+          Object.keys(component.props).forEach((key) => {
+            dom[key] = component.props[key];
+          });
+          // 设置组件位置
+          if (dsl.layout === 'grid') {
+            dom.style.gridRow = component.position.row;
+            dom.style.gridColumn = component.position.column;
+          }
+          container.appendChild(dom);
+        });
+
+        // 设置布局样式
+        if (dsl.layout === 'grid') {
+          container.style.display = 'grid';
+          container.style.gridTemplateRows = `repeat(auto-fit, minmax(50px, 1fr))`;
+          container.style.gridTemplateColumns = `repeat(auto-fit, minmax(100px, 1fr)`;
+        }
+      }
+
+      const container = document.getElementById('root');
+      render(jsonData, container);
+    </script>
+  </body>
+</html>

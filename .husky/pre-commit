@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# pnpm run lint:vue && pnpm run lint:style && pnpm run spellcheck
+npx lint-staged && pnpm run spellcheck

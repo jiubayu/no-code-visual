@@ -1,0 +1,26 @@
+{
+    "type": "page",
+    "layout": "grid",
+    "components": [
+        {
+            "type": "Button",
+            "props": {
+                "text": "Click me"
+            },
+            "position": {
+                "row": 1,
+                "column": 1
+            }
+        },
+        {
+            "type": "Input",
+            "props": {
+                "placeholder": "Enter text"
+            },
+            "position": {
+                "row": 2,
+                "column": 1
+            }
+        }
+    ]
+}
